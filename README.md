@@ -11,3 +11,11 @@
 3、显示帖子列表</br>
 4、评论</br>
 ...</br>
+
+运行截图：</br>
+<img src="https://wx1.sinaimg.cn/mw690/006fZNl0gy1fmd4isebb3j311u0iwtao.jpg"  alt="论坛首页" /></br>
+<img src="https://wx1.sinaimg.cn/mw690/006fZNl0gy1fmd4isdyumj30me0igq4f.jpg"  alt="论坛版块" /></br>
+
+</br></br></br>
+では、ご自由に……</br>
+<img src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=604185777,1108093762&fm=27&gp=0.jpg"  alt="我狛" />
