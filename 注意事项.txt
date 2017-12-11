@@ -9,12 +9,12 @@ python manage.py migrate
 51/100
 
 【超级admin备忘】
-lovelesswyq
+lovelesswyq(or admin)
 wyq19970326.
 
 
 【需求包】
 pip install Pillow
 pip install django-contrib-comments
-pip install pytzpip install django-taggit
 pip install pytz
+pip install django-taggit

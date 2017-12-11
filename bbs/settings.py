@@ -36,7 +36,7 @@ SECRET_KEY = '!20=_lfhq3#9hp5ci4##-pibi!wu=_9g#0()^r^^oaw-g-me24'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['lovelesswyq.pythonanywhere.com','127.0.0.1']
 
 TEMPLATE_DIRS = (
         os.path.join(BASE_DIR, 'templates'),
