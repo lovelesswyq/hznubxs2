@@ -1,0 +1,54 @@
+﻿<link href="/static/css/signin.css" rel="stylesheet">
+{% extends 'index.html' %}
+ 
+{% block page-content %}
+ 
+<!-- Place inside the <head> of your HTML -->
+<script type="text/javascript" src="/static/tinymce/js/tinymce/tinymce.min.js"></script>
+<script type="text/javascript">
+
+tinymce.init({
+    selector: "textarea",
+    theme: "modern",
+    plugins: [
+        "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+        "searchreplace wordcount visualblocks visualchars code fullscreen",
+        "insertdatetime media nonbreaking save table contextmenu directionality",
+        "emoticons template paste textcolor colorpicker textpattern"
+    ],
+    toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+    toolbar2: "print preview media | forecolor backcolor emoticons",
+    image_advtab: true,
+    templates: [
+        {title: 'Test template 1', content: 'Test 1'},
+        {title: 'Test template 2', content: 'Test 2'}
+    ]
+});
+ 
+</script>
+ <h1 align="center">发布帖子</h1>
+<!-- Place this in the body of the page content -->
+<form method="post" action="/unuse/bbs_pub">{% csrf_token %}
+    <h3  align="center">当前板块：物品闲置</h3>
+    <hr>
+    <h3>标题</h3>
+    <input type="text" name="a_title" class="form-control" placeholder="" required>
+    <hr>
+    <h3>Slug</h3>
+    <input type="text" name="a_slug" class="form-control" placeholder="" required>
+    <hr>
+    <h3>内容</h3>
+    <textarea name="a_body" cols="40" rows="10" class="form-control" placeholder="" required>
+</textarea>
+    <hr>
+    <h3>标签</h3>
+    <input type="text" name="a_tags" class="form-control" placeholder="" required>
+    <hr>
+    <div class="form-signin">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">发表</button>
+    </div>
+{#    <input type='submit' value='Save' />#}
+</form>
+ 
+ 
+{% endblock %}

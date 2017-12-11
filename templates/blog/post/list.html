@@ -1,0 +1,45 @@
+﻿{% extends "blog/base.html" %}
+{%   block page-content%}
+{% block content %}
+  <h1 align="center">水区杂谈版块</h1>
+  <hr style="height:1px;border:none;border-top:1px dashed #0066CC;" /> 
+   <ul class="nav nav-pills navbar-right" role="tablist">
+         <li role="presentation" class="active">
+              <a href="/blog/bbs_pub">发帖</a>
+         </li>
+     </ul>
+     
+ 
+  {% if tag %}
+    <h2>Posts tagged with "{{ tag.name }}"</h2>
+    
+  {% endif %}
+
+  {% for post in posts %}
+    <h2>
+      <a href="{{ post.get_absolute_url }}">
+        {{ post.title }}
+      </a>
+    </h2>
+    
+<!-- 显示tags的内容   -->
+    <p class="tags">
+  标签:
+  {% for tag in post.tags.all %}
+    <a href="{% url "blog:post_list_by_tag" tag.slug %}">
+      {{ tag.name }}
+    </a>
+    {% if not forloop.last %}, {% endif %}
+  {% endfor %}
+</p>
+
+    <p class="date">
+      Published {{ post.publish }} by {{ post.author }}
+    </p>
+    {{ post.body|truncatewords:30|linebreaks }}
+  {% endfor %}
+ 
+  {% include "pagination.html" with page=posts %}
+
+{% endblock %}
+{% endblock %}

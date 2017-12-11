@@ -1,0 +1,8 @@
+{% extends "index.html" %}
+{%   block page-content%}
+{% block title %}欢迎{% endblock %}
+{% block content %}
+  <h1 align="center">欢迎 {{ new_user.first_name }}!</h1>
+  <p align="center">你已经加入百晓生的行列啦，快进入这个小江湖试试身手吧→ <a href="{% url "login" %}">进入江湖</a>.</p>
+{% endblock %}
+{% endblock %}

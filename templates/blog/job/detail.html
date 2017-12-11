@@ -1,0 +1,51 @@
+﻿{% extends "blog/base.html" %}
+{%   block page-content%}
+
+{% block job %}
+   <h2>
+      <a href="{{ job.get_absolute_url }}">
+        {{ job.title }}
+      </a>
+    </h2>
+  <p class="date">
+    Published {{ job.publish }} by {{ job.author }}
+  </p>
+  {{ job.body|linebreaks }}
+{% with comments.count as total_comments %}
+  <h2>
+    {{ total_comments }} 个评论
+  </h2>
+{% endwith %}
+{% for comment in comments %}
+  <div class="comment">
+    <p class="info">
+      Comment {{ forloop.counter }} 楼 by {{ comment.name }}
+      {{ comment.created }}
+    </p>
+    {{ comment.body|linebreaks }}
+  </div>
+  <br>
+{% empty %}
+  <p>这儿还没有人讨论呢。</p>
+{% endfor %}
+{% if new_comment %}
+  <h2>您的评论已提交成功。</h2>
+  
+    <h2>继续讨论↓</h2>
+  <form action="." method="post">
+    {{ comment_form.as_p }}
+    {% csrf_token %}
+    <p><input type="submit" value="评论"></p>
+  </form>
+  
+{% else %}
+  <h2>说点什么吧↓</h2>
+  <form action="." method="post">
+    {{ comment_form.as_p }}
+    {% csrf_token %}
+    <p><input type="submit" value="评论"></p>
+  </form>
+{% endif %}
+
+{% endblock %}
+{% endblock %}

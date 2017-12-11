@@ -1,0 +1,20 @@
+【编程注意事项】
+# 1. 创建更改的文件
+python manage.py makemigrations
+# 2. 将生成的py文件应用到数据库
+python manage.py migrate
+如果为了添加，删除，或是改变了存在的模型（models）中字段，或者你添加了新的模型（models）而编辑了models.py文件，你都需要通过使用makemigrations命令做一次新的数据库迁移（migration）。数据库迁移（migration）允许Django来保持对模型（model）改变的跟踪。之后你必须通过migrate命令来保持数据库与我们的模型（models）同步。
+
+【PPT搬运进度】
+51/100
+
+【超级admin备忘】
+lovelesswyq
+wyq19970326.
+
+
+【需求包】
+pip install Pillow
+pip install django-contrib-comments
+pip install pytzpip install django-taggit
+pip install pytz

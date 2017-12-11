@@ -1,0 +1,26 @@
+
+<link href="/static/css/signin.css" rel="stylesheet">
+{%extends 'index.html'%}
+ 
+{%   block page-content%}
+{% block content %}
+          <h3 align="center" class="form-signin-heading">杭师百晓生登录</h3>
+  {% if form.errors %}
+    <p align="center">
+      您的代号与暗号并不拼配，
+      请重新输入。
+    </p>
+  {% else %}
+   <p align="center">请输入您的代号与暗号： <a href="{% url "register" %}">还没有代号？点此加入百晓生行列</a></p>
+  {% endif %}
+  <div class="login-form" align="center">
+    <form action="{% url 'login' %}" class="form-signin" method="post">
+      {{ form.as_p }}
+      {% csrf_token %}
+      <input type="hidden" name="next" value="{{ next }}" />
+      <p align="center"><input type="submit" value="确认"></p>
+    </form>
+    <p align="center"><a href="{% url "password_reset" %}">忘记暗号了？点击这里</a></p>
+  </div>
+ {% endblock %}
+ {% endblock %}

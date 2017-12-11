@@ -1,0 +1,42 @@
+﻿{% extends 'index.html' %}
+ 
+{% load comments %}
+ 
+{% block page-content %}
+<!--bbs-contents-->
+<div class="contents">
+    {{ bbs_obj.title }}
+    <br>
+    {{ bbs_obj.content | safe}}
+</div>
+ 
+<hr>
+<div class="comments">
+    <div>
+        {% get_comment_count for bbs_obj as comment_count %}
+        <span class="glyphicon glyphicon-comment">
+        </span>
+        {{ comment_count }}
+    </div>
+    <br>
+    {% if user.is_authenticated %}
+        <form action="/sub_comment/" method="POST">
+            <textarea cols="80" rows="3" name='comment_content'></textarea><br>
+            <input type="hidden" name="bbs_id" value="{{ bbs_obj.id }}" />
+            <input type="submit" value="Add comment" id="id_submit" />
+        </form>
+    {% else %}
+        <p>Please <a href="/login/">Login</a> to  comment </p>
+    {% endif %}
+ 
+    <hr>
+    {% get_comment_list for bbs_obj as comment_list %}
+      {% for comment in comment_list reversed %}
+          {{ comment.submit_date }}
+          <br>
+          {{ comment.comment }}
+          <hr>
+      {% endfor %}
+</div>
+ 
+{% endblock %}

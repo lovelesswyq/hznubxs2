@@ -1,0 +1,12 @@
+{% extends "index.html" %}
+{%   block page-content%}
+{% block content %}
+  <h1 align="center">欢迎加入校园百晓生的行列</h1>
+  <p align="center">请写下您的有关信息:</p>
+  <form action="." align="center" method="post">
+    {{ user_form.as_p }}
+    {% csrf_token %}
+    <p align="center"><input type="submit" value="加入百晓生"></p>
+  </form>
+{% endblock %}
+{% endblock %}

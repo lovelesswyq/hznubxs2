@@ -1,0 +1,38 @@
+﻿{% extends "blog/base.html" %}
+{% block page-content%}
+{% block travel %}
+  <h1 align="center">旅游信息版块</h1>
+  <hr style="height:1px;border:none;border-top:1px dashed #0066CC;" /> 
+   <ul class="nav nav-pills navbar-right" role="tablist">
+         <li role="presentation" class="active">
+              <a href="/travel/bbs_pub">发帖</a>
+         </li>
+   </ul>   
+  {% if tag %}
+    <h2>Posts tagged with "{{ tag.name }}"</h2>
+  {% endif %}
+
+  {% for travel in travels %}
+    <h2>
+      <a href="{{ travel.get_absolute_url }}">{{ travel.title }}</a>
+    </h2>
+    
+<!-- 显示tags的内容   -->
+    <p class="tags">
+    标签:
+    {% for tag in travel.tags.all %}
+    <a href="{% url "travel:travel_list_by_tag" tag.slug %}">{{ tag.name }}</a>
+    {% if not forloop.last %}, {% endif %}
+    {% endfor %}
+    </p>
+
+    <p class="date">
+      Published {{ travel.publish }} by {{ travel.author }}
+    </p>
+    {{ travel.body|truncatewords:30|linebreaks }}
+  {% endfor %}
+ 
+  {% include "pagination.html" with page=travels %}
+
+{% endblock %}
+{% endblock %}

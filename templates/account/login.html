@@ -1,0 +1,14 @@
+<link href="/static/css/signin.css" rel="stylesheet">
+{%extends 'index.html'%}
+ 
+{%   block page-content%}
+{% block content %}
+    <h3 align="center" class="form-signin-heading">杭师百晓生登录</h3>
+    <p align="center">请输入您的代号与暗号：</p>
+    <form action="." class="form-signin" method="post">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <p align="center"><input type="submit" value="Log-in"></p>
+    </form>
+{% endblock %}
+{% endblock %}

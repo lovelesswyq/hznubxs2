@@ -1,0 +1,44 @@
+﻿{% extends "blog/base.html" %}
+{% block page-content%}
+{% block study %}
+  <h1 align="center">学习交流版块</h1>
+  <hr style="height:1px;border:none;border-top:1px dashed #0066CC;" /> 
+   <ul class="nav nav-pills navbar-right" role="tablist">
+         <li role="presentation" class="active">
+              <a href="/study/bbs_pub">发帖</a>
+         </li>
+     </ul>
+     
+  {% if tag %}
+    <h2>Posts tagged with "{{ tag.name }}"</h2>
+    
+  {% endif %}
+
+  {% for study in studys %}
+    <h2>
+      <a href="{{ study.get_absolute_url }}">
+        {{ study.title }}
+      </a>
+    </h2>
+    
+<!-- 显示tags的内容   -->
+    <p class="tags">
+  标签:
+  {% for tag in study.tags.all %}
+    <a href="{% url "study:study_list_by_tag" tag.slug %}">
+      {{ tag.name }}
+    </a>
+    {% if not forloop.last %}, {% endif %}
+  {% endfor %}
+</p>
+
+    <p class="date">
+      Published {{ study.publish }} by {{ study.author }}
+    </p>
+    {{ study.body|truncatewords:30|linebreaks }}
+  {% endfor %}
+ 
+  {% include "pagination.html" with page=studys %}
+
+{% endblock %}
+{% endblock %}

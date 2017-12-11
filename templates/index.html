@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>  
+<html>  
+<head>  
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>  
+    <title></title>  
+    <meta charset="utf-8" />  
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">  
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>  
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>  
+    <style type="text/css">  
+        html, body {width:100%;height:100%;} /*非常重要的样式让背景图片100%适应整个屏幕*/  
+        .bg {display: table;width: 100%;height: 100%;padding: 100px 0;text-align: center;color: #fff;background: url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1512403697735&di=651ed8914114bfb36c5d6f2baec8834b&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01bca159759421a8012193a318e3e8.gif) no-repeat bottom center;background-color: #000;background-size: cover;}  
+        .my-navbar {padding:20px 0;transition: background 0.5s ease-in-out, padding 0.5s ease-in-out;}  
+        .my-navbar a{background:transparent !important;color:#000000 !important}  
+        .my-navbar a:hover {color:#FF6347 !important;background:transparent;outline:0}  
+        .my-navbar a {transition: color 0.5s ease-in-out;}/*-webkit-transition ;-moz-transition*/  
+        .top-nav {padding:0;background:#FFEC8B;}  
+        button.navbar-toggle {background-color:#fbfbfb;}/*整个背景都是transparent透明的，会看不到，所以再次覆盖一下*/  
+        button.navbar-toggle > span.icon-bar {background-color:#dedede}  
+        
+    </style>  
+</head>  
+<body>  
+    <nav class="navbar navbar-fixed-top my-navbar" role="navigation">  
+        <div class="container-fluid">  
+            <div class="navbar-header">  
+                <button type="button" class="navbar-toggle" data-toggle="collapse"  
+                        data-target="#example-navbar-collapse">  
+                    <span class="sr-only">切换导航</span>  
+                    <span class="icon-bar"></span>  
+                    <span class="icon-bar"></span>  
+                    <span class="icon-bar"></span>  
+                </button>  
+                <a class="navbar-brand" href="/">杭师百晓生</a>  
+            </div>  
+            <div class="collapse navbar-collapse" id="example-navbar-collapse">  
+                <ul class="nav navbar-nav"> 
+                
+            <li class="active"><a href="/study/">学习交流</a></li>
+            <li class="active"><a href="/job/">工作兼职</a></li>
+            <li class="active"><a href="/unuse/">物品闲置</a></li>
+            <li class="active"><a href="/travel/">旅游信息</a></li>
+           
+            <li class="active"><a href="/blog/">水区杂谈</a></li>
+            {% for category in bbs_category %}
+                    {% ifequal category.id cate_id %}
+                        <li class="active"><a href="/category/{{ category.id }}/">{{ category.name }}</a></li>
+                    {% else %}
+                        <li class=""><a href="/category/{{ category.id }}/">{{ category.name }}</a></li>
+                    {% endifequal %}
+                {% endfor %}
+                
+                </ul>  
+                
+                 <ul class="nav navbar-nav navbar-right"> <!--登陆设置，在最右端的下拉菜单-->
+           <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                  {% if user.is_authenticated %}  <!--信息认证-->
+                    {{ user.username }}
+                  {% else %}
+                     嘿！兄弟
+                  {% endif %}
+                  <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li align="right"><a href="/login/">别来无恙</a></li>
+                <li align="right"><a href="/logout/">后会有期</a></li>
+                <li align="right"><a href="/account/register/">加入百晓生</a></li>
+              </ul>
+            </li>
+          </ul>
+          
+          
+            </div>  
+        </div>  
+    </nav>  
+    
+    
+    
+    
+    
+    
+     <div class="bg"></div>  
+    
+    <div class="container center-container-hx"> <!-- 放置可重用的数据-->
+     <!--下面的代码为动态页面，此页面为母版，其他网站可以重用block中的数据，只要继承母版即可-->
+     {% block page-content %}
+      <!-- Main component for a primary marketing message or call to action -->
+      
+      <br/>
+      <hr>
+      <div class="contents">
+        {% for bbs in bbs_list %}
+            <!--论坛首页链接标题-->
+            <a href="/detail/{{ bbs.id }}">{{ bbs.title }}</a><!--点击标题跳转到bbs_detail.html-->
+            <br>
+            {{ bbs.summary }}
+            <br>
+            <hr>
+        {% endfor %}
+      </div>
+     {% endblock %}
+    </div> <!-- /container -->
+    
+    
+    <script>  
+        $(window).scroll(function () {  
+            if ($(".navbar").offset().top > 50) {$(".navbar-fixed-top").addClass("top-nav");  
+            }else {$(".navbar-fixed-top").removeClass("top-nav");}  
+        })</script>  
+</body></html>  
