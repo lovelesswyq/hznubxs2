@@ -48,7 +48,7 @@ def index(request):
     bbs_list = models.Article.objects.all()
     # 取出bbs的类别
     bbs_categories = models.Category.objects.all()
-    return render_to_response('/account/dashboard.html', {'bbs_list': bbs_list,
+    return render_to_response('account\dashboard.html', {'bbs_list': bbs_list,
                                              'user': request.user,  # 将登陆认证后的信息返回
                                              'bbs_category': bbs_categories,
                                              'bbs_id': 0,
