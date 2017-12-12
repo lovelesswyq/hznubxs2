@@ -5,6 +5,12 @@
 这个时候，内行的您也可以选择使用Python manage.py runserver来查看这个工程。</br>
 如果不幸图片的地址挂掉了，您需要修改html来读取网页的完整样式。</br>
 
+关于需求包安装：</br>
+pip install Pillow</br>
+pip install django-contrib-comments</br>
+pip install pytz</br>
+pip install django-taggit</br>
+
 本论坛实现的功能暂时有，工事只今进行中：</br>
 1、分区</br>
 2、发帖</br>
@@ -18,4 +24,4 @@
 
 </br></br></br>
 では、ご自由に……</br>
-<img src="http://img5.duitang.com/uploads/item/201601/11/20160111201336_EkhSe.jpeg"  alt="数字松" />
+<img src="http://wx2.sinaimg.cn/mw690/006fZNl0gy1fmdtqwwkcuj30dw0dwtc9.jpg"  alt="数字松" />
