@@ -22,7 +22,7 @@ def travel_detail(request, year, month, day, post):
             # Create Comment object but don't save to database yet
             new_comment = comment_form.save(commit=False)
             # Assign the current post to the comment
-            new_comment.post = post
+            new_comment.post = travel
             # Save the comment to the database
             new_comment.save()
     else:
@@ -48,7 +48,7 @@ def travel_list(request, tag_slug=None):
        tag = get_object_or_404(Tag, slug=tag_slug)
        object_list = object_list.filter(tags__in=[tag])
        
-   paginator = Paginator(object_list, 3) # 3 posts in each page
+   paginator = Paginator(object_list, 5) # 3 posts in each page
    page = request.GET.get('page')
    try:
        travels = paginator.page(page)
@@ -69,8 +69,7 @@ def contact(request):
        a_slug=request.POST['a_slug']
        a_author=request.user
        a_body=request.POST['a_body']
-       a_tags=request.POST['a_tags']
-       models.Travel.objects.create(title=a_title,slug=a_slug,author=a_author,body=a_body,status='published',tags=a_tags)
+       models.Travel.objects.create(title=a_title,slug=a_slug,author=a_author,body=a_body,status='published')
 
        object_list = Travel.published.all()
        tag = None
@@ -79,7 +78,7 @@ def contact(request):
               tag = get_object_or_404(Tag, slug=tag_slug)
               object_list = object_list.filter(tags__in=[tag])
        
-       paginator = Paginator(object_list, 3) # 3 posts in each page
+       paginator = Paginator(object_list, 5) # 3 posts in each page
        page = request.GET.get('page')
        try:
               travels = paginator.page(page)

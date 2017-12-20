@@ -6,4 +6,4 @@ from .models import jobComment
 class CommentForm(forms.ModelForm):
     class Meta:
         model = jobComment
-        fields = ('name', 'email', 'body')
+        fields = ('name', 'body')

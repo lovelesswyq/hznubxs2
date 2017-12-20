@@ -18,7 +18,12 @@
         button.navbar-toggle {background-color:#fbfbfb;}/*整个背景都是transparent透明的，会看不到，所以再次覆盖一下*/  
         button.navbar-toggle > span.icon-bar {background-color:#dedede}  
         
-    </style>  
+    </style> 
+    <script>
+        function fillB(){
+                document.getElementById("inputB").value = document.getElementById("inputA").value;
+        }
+    </script>
 </head>  
 <body>  
     <nav class="navbar navbar-fixed-top my-navbar" role="navigation">  

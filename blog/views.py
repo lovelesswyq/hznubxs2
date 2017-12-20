@@ -33,7 +33,7 @@ def post_detail(request, year, month, day, post):
                   'comments': comments, 
                   'new_comment': new_comment,
                   'comment_form': comment_form})
-    
+
 
 class PostListView(ListView):
     queryset = Post.published.all()
@@ -62,6 +62,7 @@ def post_list(request, tag_slug=None):
                                                   'posts': posts,
                                                   'tag': tag})
 
+
 def contact(request):
     
    if request.method == 'POST':
@@ -70,8 +71,7 @@ def contact(request):
        a_slug=request.POST['a_slug']
        a_author=request.user
        a_body=request.POST['a_body']
-       a_tags=request.POST['a_tags']
-       models.Post.objects.create(title=a_title,slug=a_slug,author=a_author,body=a_body,status='published',tags=a_tags)
+       models.Post.objects.create(title=a_title,slug=a_slug,author=a_author,body=a_body,status='published')
 
        object_list = Post.published.all()
        tag = None
@@ -80,7 +80,7 @@ def contact(request):
            tag = get_object_or_404(Tag, slug=tag_slug)
            object_list = object_list.filter(tags__in=[tag])
        
-       paginator = Paginator(object_list, 3) # 3 posts in each page
+       paginator = Paginator(object_list, 5) # 3 posts in each page
        page = request.GET.get('page')
        try:
            posts = paginator.page(page)

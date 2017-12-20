@@ -32,17 +32,14 @@ tinymce.init({
     <h3  align="center">当前板块：工作兼职</h3>
     <hr>
     <h3>标题</h3>
-    <input type="text" name="a_title" class="form-control" placeholder="" required>
+    <input type="text" id="inputA" name="a_title" class="form-control" placeholder="" required onkeyup="fillB()"/>
     <hr>
     <h3>Slug</h3>
-    <input type="text" name="a_slug" class="form-control" placeholder="" required>
+    <input type="text" id="inputB" name="a_slug" class="form-control" placeholder="" required>
     <hr>
     <h3>内容</h3>
     <textarea name="a_body" cols="40" rows="10" class="form-control" placeholder="" required>
 </textarea>
-    <hr>
-    <h3>标签</h3>
-    <input type="text" name="a_tags" class="form-control" placeholder="" required>
     <hr>
     <div class="form-signin">
         <button class="btn btn-lg btn-primary btn-block" type="submit">发表</button>
